@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
-from rest_framework import permissions, response, status, viewsets, mixins
-from rest_framework.decorators import action
+from rest_framework import permissions, viewsets, mixins
 
 from .serializer import (
     CreateThreadSerializer,
@@ -47,11 +46,7 @@ class MessageViewSet(mixins.CreateModelMixin,
 
     serializer_class_map = {
         'create': CreateMessageSerializer,
-        # 'list': ThreadSerializer,
     }
 
-    # def get_queryset(self):
-    #     from .models import Thread
-    #     return Thread.objects.filter(participants=self.request.user)
     def get_serializer_class(self):
         return self.serializer_class_map[self.action]
