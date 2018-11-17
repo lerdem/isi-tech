@@ -21,7 +21,7 @@ class CustomUserManager(UserManager):
         return user
 
     def create_superuser(self, email, password, **extra_fields):
-        extra_fields = {'type': 1}
+        extra_fields.update({'type': 1})
         username = None
         super().create_superuser(username, email, password, **extra_fields)
 
